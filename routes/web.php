@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    setlocale(LC_TIME, 'ita');
+    $data = strftime("%A, %d %B %Y");
+
+    $data = [
+        "today" => utf8_encode($data),
+        "now" => date("H:i"),
+        "leap_year" => date("L")
+    ];
+
+    return view('home', $data);
 });
